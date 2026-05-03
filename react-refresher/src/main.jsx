@@ -15,9 +15,7 @@ let name = "App";
 
 createRoot(document.getElementById("root")).render(
   <>
-    <h1 className="title" id="heading">
-      Welcome to Mobile dev! {name}
-    </h1>
+   
     <App />
   </>
 );
