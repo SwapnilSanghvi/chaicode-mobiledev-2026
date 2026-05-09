@@ -1,59 +1,60 @@
-import React, { useState } from "react";
 import {
-  Button,
-  ScrollView,
-  StyleSheet,
-  Switch,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
   Text,
+  TextInput,
   View,
 } from "react-native";
 
-const HomeScreen = () => {
-  const items = Array.from({ length: 5 }, (_, i) => `Item ${i + 1}`);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  console.log("hello");
+export default function App() {
   return (
-    <ScrollView
+    <KeyboardAvoidingView
       style={{ flex: 1 }}
-      contentContainerStyle={{
-        padding: 16,
-        alignItems: "center",
-      }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      {items.map((item) => (
-        <View
-          key={item}
+      <View style={{ flex: 1, justifyContent: "flex-end", padding: 24 }}>
+        <Text style={{ fontSize: 24, fontWeight: "bold", marginBottom: 24 }}>
+          Login
+        </Text>
+
+        <TextInput
+          placeholder="Email"
           style={{
-            backgroundColor: "white",
-            padding: 16,
+            borderWidth: 1,
+            borderColor: "#ddd",
             borderRadius: 10,
-            marginBottom: 10,
-            shadowColor: "#000",
-            shadowOpacity: 0.05,
-            shadowRadius: 4,
-            elevation: 2,
+            padding: 14,
+            fontSize: 16,
+            marginBottom: 12,
+          }}
+        />
+        <TextInput
+          placeholder="Password"
+          secureTextEntry
+          style={{
+            borderWidth: 1,
+            borderColor: "#ddd",
+            borderRadius: 10,
+            padding: 14,
+            fontSize: 16,
+            marginBottom: 20,
+          }}
+        />
+
+        <Pressable
+          style={{
+            backgroundColor: "#6C63FF",
+            padding: 16,
+            borderRadius: 12,
+            alignItems: "center",
           }}
         >
-          <Text style={{ fontSize: 16 }}>{item}</Text>
-        </View>
-      ))}
-
-      <Button
-        title="Hello i am button"
-        color={"green"}
-        onPress={() => alert("Hello world")}
-      />
-      <Switch
-        value={isDarkMode}
-        onValueChange={setIsDarkMode}
-        trackColor={{ false: "#ddd", true: "#6c63ff" }}
-        thumbColor={"yellow"}
-      />
-    </ScrollView>
+          <Text style={{ color: "white", fontWeight: "bold", fontSize: 16 }}>
+            Sign In
+          </Text>
+        </Pressable>
+      </View>
+    </KeyboardAvoidingView>
   );
-};
-
-export default HomeScreen;
-
-const styles = StyleSheet.create({});
+}
